@@ -1,0 +1,79 @@
+<div id="root"></div>
+<script src="https://codepen.io/chriscoyier/pen/yIgqi.js"></script>
+<script src="https://fb.me/react-with-addons-0.13.3.min.js"></script>
+<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+
+<style>
+    .container{
+        color:red;
+        font-size:3rem;
+    }
+</style>
+<script type="text/javascript">
+    const rootElement  = document.getElementById('root');
+    
+    class StopWatch extends React.Component{
+        constructor(props){
+            super(props);
+            
+            this.state = {
+                lapse: 0,
+                running: false,
+            }
+        }
+        handleRunClick(){
+            const startTime = Date.now() - this.state.lapse;
+            
+            this.setState(state =>{
+                if(state.running){
+                    clearInterval(this.timer);
+                }else {
+                    this.timer = setInterval(() =>{
+                      this.setState({
+                          lapse:Date.now() - startTime,
+                      })      
+                   });
+                }
+                return {running: !state.running}
+            })
+            
+            
+            this.setState({
+                running: true,
+            })
+        }
+        
+        handleClearClick(){
+            this.setState({
+                lapse: 0,
+                running:false
+            });
+        }
+        
+        
+        render(){
+            const {lapse, running} = this.state
+            const buttonStyle = {
+                border: '1px solid #ccc',
+                background: '#ccc',
+                fontSize: '2em',
+                padding:15,
+                margin:5,
+                width:200,
+            }
+            
+            return(
+             <div> 
+                <label style={{fontSize:'5em',display:'block'}}>{lapse}ms</label>
+                <button onClick={this.handleRunClick.bind(this)} style={buttonStyle}>{running? 'Stop': 'Start'}</button>
+                <button onClick={this.handleClearClick.bind(this)} style={buttonStyle}>Clear</button>
+            </div>
+            );
+        }
+    }
+    
+    
+   
+    const element = <StopWatch running={true} lapse ={0} />;
+    React.render(element, rootElement);
+</script>
