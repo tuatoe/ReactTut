@@ -3,16 +3,26 @@
 <script src="https://fb.me/react-with-addons-0.13.3.min.js"></script>
 <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
 
+
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+-->
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>-->
+
+
 <style>
     .container{
         color:red;
         font-size:3rem;
     }
 </style>
+
 <script type="text/javascript">
     const rootElement  = document.getElementById('root');
     
-    class StopWatch extends React.Component{
+{/* class StopWatch extends React.Component{
         constructor(props){
             super(props);
             
@@ -75,5 +85,80 @@
     
    
     const element = <StopWatch running={true} lapse ={0} />;
-    React.render(element, rootElement);
+    */}
+    
+    
+    {/* 
+    
+    class Counter extends React.Component{
+        constructor(props){
+            super(props);
+            
+            this.state = {
+                count: 0
+            }
+            
+            this.handleCount = this.handleCount.bind(this);
+        }
+        
+        handleCount(){
+            this.setState({
+                count: this.state.count + 1
+            })
+        }
+        
+        render(){
+            return(
+                
+               
+            
+               <button onClick={this.handleCount}>
+
+                        {this.state.count}
+                </button>
+            );
+        }
+    }
+    */}
+    
+    
+    class Tilt extends React.Component{
+        constructor(props){
+            super(props);
+        }
+        
+        comoponentDidMount(){
+            
+        }
+        
+        render(){
+            return(
+                <div 
+                ref={node =>(this.rootNode = node)}
+                className="tilt-root">
+                <div className="tilt-child"> 
+                
+                <div {...this.props} /> 
+                    
+                </div>
+                
+                </div>
+            );
+        }
+    }
+    
+    
+ 
+    const element = (
+    
+        <div className="totally-centered">
+        <Tilt> 
+        <div className="totally-centered"> vanilla-tilt.js</div>
+        </Tilt>
+        
+        </div>
+    );
+   
+  
+    React.render(<Tilt />, rootElement);
 </script>
